@@ -24,7 +24,12 @@ interface ProductProp {
 const Pagination = ({ postsPerPage, totalPosts, data, currentDisplay, setCurrentDisplay, currentPage, setCurrentPage } : ChildProps) => {
     const PageNumbers = [];
     const horizontalTransform = "scale(-1 1)";
-    const int = Math.ceil(totalPosts / postsPerPage)
+    const int = Math.ceil(totalPosts / postsPerPage);
+    
+    useEffect(() => {
+        setCurrentDisplay(data.slice((currentPage - 1) * 4 , currentPage * 4));
+    },[currentPage]);
+
     if (int === 1 ) return null;
     for (let i = 1; i <= int; i++) {
         PageNumbers.push(i as never);
@@ -37,10 +42,6 @@ const Pagination = ({ postsPerPage, totalPosts, data, currentDisplay, setCurrent
             setCurrentPage(1);
         }
     }
-
-    useEffect(() => {
-        setCurrentDisplay(data.slice((currentPage - 1) * 4 , currentPage * 4));
-    },[currentPage]);
 
     const nextPageHandler = (e) => {
         if (currentPage < PageNumbers.length) {

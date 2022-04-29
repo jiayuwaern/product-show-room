@@ -37,7 +37,7 @@ const Homepage: NextPage = () => {
 
     useEffect(() => {
         setCurrentDisplay(data.slice((currentPage - 1) * 4 , currentPage * 4));
-    },[data]);
+    },[data, currentPage]);
 
     useEffect(() => {
     },[currentDisplay]);

@@ -24,8 +24,21 @@ Please clone the repository and open the project in Vscode.
 
 Install the dependencies that are needed for this project.
 
-`npm start`
+### Run the application in dev
+
+`npm run dev`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+### Run the application in pro
+
+`npm run build`
+
+Build the app
+
+`npm run start`
+Runs the app in the production mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
 # product-show-room
