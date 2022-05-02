@@ -78,11 +78,11 @@ export default Pagination;
 const PaginationContainer = styled.div`
     display: flex;
     flex-direction: row;
+    margin-left: 0;
     .carousel-info{
-        padding: 5vw;
-        width: 90%;
+        padding: 1vw;
         h3 {
-            font-size: 5vw;
+            font-size: 0.8rem;
             color: #707070;
             margin-bottom: 0;
             font-weight: 100;
@@ -92,24 +92,24 @@ const PaginationContainer = styled.div`
             flex-direction: row;
             align-items: center;
             h1 {
-                font-size: 6vw;
-                margin-right: 2vw;
+                font-size: 1rem;
+                margin-right: 1vw;
             }
             h2 {
-                font-size: 5vw;
+                font-size: 0.8rem;
                 color: #707070;
                 font-weight: 100;
             }
         }
     }
     .carousel-img {
-        width: 100%;
+        width: 22.5vw;
     }
 `;
 
 const CarouselButtonsContainer = styled.div`
-    width: 24vw;
+    width: 6vw;
     display: flex;
     flex-direction: row;
-    margin-left: 369vw;
+    margin-left: 90%;
 `

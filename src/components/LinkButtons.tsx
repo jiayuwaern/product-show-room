@@ -45,10 +45,16 @@ const LinksContainer = styled.div`
     }
 
     @media (min-width: 1024px) {
-        margin-top: 10vh;
+        width: 22.5vw;
+        margin-top: 2vh;
         .links-button {
+            width: 8vw;
             p {
-                font-size: 3.5vw;
+                font-size: 0.8rem;
+            }
+            .links-icon {
+            width: 1vw;
+            margin-left: 0.5vw;
             }
         }
     }

@@ -2,12 +2,14 @@ import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import Carousel from '../src/components/Carousel';
 import styled from "styled-components";
+import Filter from '../src/components/Filter';
 
 const MainContainer = styled.div`
   @media (min-width: 420px) {
   }
 
   @media (min-width: 1024px) {
+    width: 100vw;
   }
 `;
 
@@ -45,6 +47,7 @@ const Homepage: NextPage = () => {
   return (
     <div>
       <MainContainer>
+        <Filter filterEle="bodyType" data={data} currentDisplay={currentDisplay} setCurrentDisplay={setCurrentDisplay} />
           <Carousel 
             data={data} 
             count={count} 
