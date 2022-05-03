@@ -12,15 +12,17 @@ interface ProductProp {
   }
 
 type ChildProps = {
-    data: ProductProp[]
+    data: ProductProp[],
+    searchResult: ProductProp[]
   }
 
-export default function ScrollIndicator({ data }: ChildProps) {
+export default function ScrollIndicator({ data, searchResult }: ChildProps) {
 
     return (
         <ScrollIndicatorContainer>
-            <Indicator itemsPerSlide={1} itemGap={10}>    
-            {data.map((item, index: number) => 
+            <Indicator itemsPerSlide={1} itemGap={10}> 
+            {searchResult.length >= 1 ?    
+                searchResult.map((item, index: number) => 
                 <div key={index} className="carousel-info">
                     <p className="carousel-type">{item.bodyType}</p>
                     <div className="carousel-intro">
@@ -30,6 +32,17 @@ export default function ScrollIndicator({ data }: ChildProps) {
                     <img src={item.imageUrl} className="carousel-img"/>
                     <LinkButtons item={item}/>
                 </div>
+            ): 
+                data.map((item, index: number) => 
+                <div key={index} className="carousel-info">
+                    <p className="carousel-type">{item.bodyType}</p>
+                    <div className="carousel-intro">
+                        <h3>{item.modelName}</h3>
+                        <p>{item.modelType}</p>
+                    </div>
+                    <img src={item.imageUrl} className="carousel-img"/>
+                <LinkButtons item={item}/>
+            </div>
             )}
             </Indicator>
         </ScrollIndicatorContainer>

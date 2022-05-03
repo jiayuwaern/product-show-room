@@ -26,6 +26,7 @@ const Homepage: NextPage = () => {
   const [count, setCount] = useState<number | any>();
   const [currentPage, setCurrentPage] = useState(1);
   const [currentDisplay, setCurrentDisplay] = useState<ProductProp[] | []>([]);
+  const [searchResult, setSearchResult] = useState<ProductProp[] | []>([]);
 
   useEffect(() => {
     const fetchData =  async () => {
@@ -47,14 +48,22 @@ const Homepage: NextPage = () => {
   return (
     <div>
       <MainContainer>
-        <Filter filterEle="bodyType" data={data} currentDisplay={currentDisplay} setCurrentDisplay={setCurrentDisplay} />
-          <Carousel 
-            data={data} 
-            count={count} 
-            currentDisplay={currentDisplay} 
-            setCurrentDisplay={setCurrentDisplay} 
-            currentPage={currentPage} 
-            setCurrentPage={setCurrentPage}/>
+        <Filter 
+          filterEle="bodyType"
+          data={data}
+          currentDisplay={currentDisplay}
+          setCurrentDisplay={setCurrentDisplay}
+          searchResult= {searchResult}
+          setSearchResult= {setSearchResult}
+           />
+        <Carousel 
+          data={data} 
+          count={count} 
+          currentDisplay={currentDisplay} 
+          setCurrentDisplay={setCurrentDisplay} 
+          currentPage={currentPage} 
+          setCurrentPage={setCurrentPage}
+          searchResult={searchResult}/>
       </MainContainer>
     </div>
   )

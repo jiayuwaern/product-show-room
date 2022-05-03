@@ -10,7 +10,8 @@ type ChildProps = {
     currentDisplay: ProductProp[],
     setCurrentDisplay: React.Dispatch<React.SetStateAction<ProductProp[]>>,
     currentPage: number,
-    setCurrentPage: React.Dispatch<React.SetStateAction<number>>
+    setCurrentPage: React.Dispatch<React.SetStateAction<number>>,
+    searchResult: ProductProp[]
   }
 
 interface ProductProp {
@@ -21,7 +22,7 @@ interface ProductProp {
     imageUrl: string,
 }
   
-const Pagination = ({ postsPerPage, totalPosts, data, currentDisplay, setCurrentDisplay, currentPage, setCurrentPage } : ChildProps) => {
+const Pagination = ({ postsPerPage, totalPosts, data, currentDisplay, setCurrentDisplay, currentPage, setCurrentPage, searchResult } : ChildProps) => {
     const PageNumbers = [];
     const horizontalTransform = "scale(-1 1)";
     const int = Math.ceil(totalPosts / postsPerPage);
@@ -43,18 +44,30 @@ const Pagination = ({ postsPerPage, totalPosts, data, currentDisplay, setCurrent
         }
     }
 
-    const nextPageHandler = (e) => {
+    const nextPageHandler = () => {
         if (currentPage < PageNumbers.length) {
             setCurrentPage(currentPage + 1);
         } else {
             setCurrentPage(currentPage);
         }
     }
-
+    
     return (
         <div>
             <PaginationContainer>
-            {currentDisplay.map((item, index: number) => 
+            {searchResult.length >= 1 ? 
+                searchResult.map((item, index: number) => 
+                <div key={index} className="carousel-info">
+                    <h3>{item.bodyType}</h3>
+                    <div className="carousel-intro">
+                        <h1>{item.modelName}</h1>
+                        <h2>{item.modelType}</h2>
+                    </div>
+                    <img src={item.imageUrl} className="carousel-img"/>
+                    <LinkButtons item={item}/>
+                </div>
+                ) :
+                currentDisplay.map((item, index: number) => 
                 <div key={index} className="carousel-info">
                     <h3>{item.bodyType}</h3>
                     <div className="carousel-intro">
@@ -66,10 +79,18 @@ const Pagination = ({ postsPerPage, totalPosts, data, currentDisplay, setCurrent
                 </div>
                 )}
             </PaginationContainer >
+            {currentDisplay.length >= 4 && searchResult.length < 1 ?
             <CarouselButtonsContainer>
                 <ChevronIcon onClick={()=> prevPageHandler()} transform={horizontalTransform}/>
-                <ChevronIcon onClick={(e)=> nextPageHandler(e)} transform=""/>
+                <ChevronIcon onClick={()=> nextPageHandler()} transform=""/>
             </CarouselButtonsContainer>
+            : ""}
+            {searchResult.length > 4 ?
+            <CarouselButtonsContainer>
+                <ChevronIcon onClick={()=> prevPageHandler()} transform={horizontalTransform}/>
+                <ChevronIcon onClick={()=> nextPageHandler()} transform=""/>
+            </CarouselButtonsContainer>
+            : ""}
         </div>
     )
 }

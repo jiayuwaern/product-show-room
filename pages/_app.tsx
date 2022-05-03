@@ -1,10 +1,15 @@
 import "../public/css/styles.css";
 import React from "react";
+import { StyleProvider, ThemePicker } from "vcc-ui";
 
 function MyApp({ Component, pageProps }) {
   return (
     <React.StrictMode>
-      <Component {...pageProps} />
+      <StyleProvider>
+        <ThemePicker variant="light">
+        <Component {...pageProps} />
+        </ThemePicker>
+      </StyleProvider>
     </React.StrictMode>
   )
 }

@@ -18,9 +18,10 @@ type ChildProps = {
   setCurrentDisplay: React.Dispatch<React.SetStateAction<ProductProp[]>>,
   currentPage: number,
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>,
+  searchResult: ProductProp[],
 }
 
-const Carousel = ({count, data, currentDisplay, setCurrentDisplay, currentPage, setCurrentPage} : ChildProps ) => {
+const Carousel = ({count, data, currentDisplay, setCurrentDisplay, currentPage, setCurrentPage, searchResult } : ChildProps ) => {
   const [isDesktop, setDesktop] = useState(false);
 
     useEffect(() => {
@@ -51,9 +52,10 @@ const Carousel = ({count, data, currentDisplay, setCurrentDisplay, currentPage, 
                 currentDisplay={currentDisplay}
                 setCurrentDisplay={setCurrentDisplay}
                 currentPage={currentPage}
-                setCurrentPage={setCurrentPage}/>
+                setCurrentPage={setCurrentPage}
+                searchResult={searchResult}/>
               ) : (
-                <ScrollIndicator data={data}/>
+                <ScrollIndicator data={data} searchResult={searchResult}/>
               )}
         </div>
     )
